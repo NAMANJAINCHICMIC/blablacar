@@ -1,0 +1,34 @@
+
+<div class="container" id="outer-container" style="background-color: #6fa5d1;">
+    <div class="container py-5 ">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h2 class="text-uppercase text-center mb-2">What's your Date Of Birth?</h2>
+              <form [formGroup]="dobForm" (ngSubmit)="onSubmit() " autocomplete="on">
+              
+                
+                <div class="form-group  mb-3">
+                   
+                  <input type="date" class="form-control" id="inputDate" formControlName="dateOfBirth"  name="dateOfBirth"
+                  [ngClass]="{'is-invalid': (dobForm.get('dateOfBirth')?.errors ) && (dobForm.get('dateOfBirth')?.touched || dobForm.get('dateOfBirth')?.dirty ), 'is-valid':dobForm.get('dateOfBirth')?.valid }"
+                  placeholder="Date Of Birth">
+               
+                  <div *ngIf="(dobForm.get('dateOfBirth')?.touched || dobForm.get('dateOfBirth')?.dirty ) && dobForm.get('dateOfBirth')?.invalid "  class="alert alert-danger">
+                    <div *ngIf="dobForm.get('dateOfBirth')?.hasError('required')">Date of Birth is required.</div>
+                    <div *ngIf="dobForm.get('dateOfBirth')?.hasError('invalidDate')">Date of Birth is invalid.</div>
+                    <div *ngIf="dobForm.get('dateOfBirth')?.hasError('futureDate')">Date of Birth cannot be in the future.</div>
+                    <div *ngIf="dobForm.get('dateOfBirth')?.hasError('minimumAge')">You must be at least 18 years old.</div>
+                  </div>
+                  </div>
+              
+                <button type="submit" *ngIf="dobForm.valid" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+
+<div class="container" id="outer-container" style="background-color: #6fa5d1;">
+    <div class="container py-5 ">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h2 class="text-uppercase text-center mb-2">What's your name?</h2>
+              <form [formGroup]="nameForm" (ngSubmit)="onSubmit() " autocomplete="on">
+               
+                <div class="form-row align-self-center justify-content-center">
+                    <div class="col mb-3">
+                      
+    
+                      <input type="text" class="form-control "
+                        [ngClass]="{'is-invalid': nameForm.get('firstName')?.errors && (nameForm.get('firstName')?.touched || nameForm.get('firstName')?.dirty), 'is-valid':nameForm.get('firstName')?.valid}"
+                        formControlName="firstName" placeholder="First name">
+                      <div *ngIf="nameForm.get('firstName')?.invalid && (nameForm.get('firstName')?.touched || nameForm.get('firstName')?.dirty) " class="alert alert-danger">
+    
+                        <div *ngIf="nameForm.get('firstName')?.errors?.['required']">
+                          First Name is required.
+                        </div>
+                        <div *ngIf="nameForm.get('firstName')?.errors?.['minlength']">
+                          First Name must be at least 3 characters long.
+                        </div>
+    
+                      </div>
+                    </div>
+                    <div class="col mb-3">
+                       
+                        <input type="text" class="form-control " formControlName="lastName"
+                        [ngClass]="{'is-invalid': nameForm.get('lastName')?.errors && (nameForm.get('lastName')?.touched || nameForm.get('lastName')?.dirty), 'is-valid':nameForm.get('lastName')?.valid}"
+                        placeholder="Last name">
+                        <div *ngIf="nameForm.get('lastName')?.invalid && (nameForm.get('lastName')?.touched || nameForm.get('lastName')?.dirty) " class="alert alert-danger">
+                            
+                            <div *ngIf="nameForm.get('lastName')?.errors?.['required']">
+                                Last Name is required.
+                            </div>
+                            <div *ngIf="nameForm.get('lastName')?.errors?.['minlength']">
+                                Last Name must be at least 3 characters long.
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <button type="submit" *ngIf="nameForm.valid" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

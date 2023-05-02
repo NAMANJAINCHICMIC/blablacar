@@ -1,0 +1,57 @@
+
+<div class="container" id="outer-container" style="background-color: #6fa5d1;">
+    <div class="container py-5 ">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h2 class="text-uppercase text-center mb-2">Sign In</h2>
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit() " autocomplete="on">
+                <div class="form-group form-outline mb-4">
+              
+                  <input type="email" required
+                    [ngClass]="{'is-invalid': loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty), 'is-valid':loginForm.get('email')?.valid}"
+                    formControlName="email" class="form-control form-control-lg " id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Enter email">
+                  <div class="alert alert-danger" *ngIf="loginForm.get('email')?.errors?.['required'] && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) ">
+                    Email is required.
+                  </div>
+  
+                </div>
+                   <div class="form-group ">
+                    
+                   
+                    <div class="d-flex">
+                       
+
+                            <input [type]="visible?'password':'text'" class="form-control col  col-12 form-control-lg" id="inputPassword4"
+                            formControlName="password" 
+                            [ngClass]="{'is-invalid': loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty), 'is-valid':loginForm.get('password')?.valid}"
+                            placeholder="Password">
+                       
+                      <span class="eyeicon col  align-self-center justify-content-center">
+                        <i  [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'" (click)="viewPassword()"></i>
+                      </span>
+                    </div>
+                    <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty) "
+                    class="alert alert-danger">
+                    <div *ngIf="loginForm.get('password')?.errors?.['required']">
+                      Password is required.
+                    </div>
+                    <div *ngIf="loginForm.get('password')?.errors?.['pattern']">
+                      Password must be at least eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+                    </div>
+                   
+                    </div>
+                  </div>
+                <button type="submit" *ngIf="loginForm.valid" class="btn btn-primary btn-lg btn-block">Submit</button>
+                <p>Don't have Account <a class="nav-link" (click)="onClickSignUp()">Create One!</a></p>
+                <a class="nav-link" (click)="onClickForget()">Forget Password</a>
+                </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+<div class="container" id="outer-container" style="background-color: #6fa5d1;">
+    <div class="container py-5 ">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h2 class="text-uppercase text-center mb-2">What's your email?</h2>
+              <form [formGroup]="emailForm" (ngSubmit)="onSubmit() " autocomplete="on">
+                <div class="form-group form-outline mb-4">
+              
+                  <input type="email" required
+                    [ngClass]="{'is-invalid': emailForm.get('email')?.errors && (emailForm.get('email')?.touched || emailForm.get('email')?.dirty), 'is-valid':emailForm.get('email')?.valid}"
+                    formControlName="email" class="form-control form-control-lg " id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Enter email">
+                  <div class="alert alert-danger" *ngIf="emailForm.get('email')?.errors?.['required'] && (emailForm.get('email')?.touched || emailForm.get('email')?.dirty) ">
+                    Email is required.
+                  </div>
+                  <div class="alert alert-danger" *ngIf="emailForm.get('email')?.errors?.['email'] && (emailForm.get('email')?.touched || emailForm.get('email')?.dirty) ">
+                   Enter a Valid Email
+                  </div>
+  
+                </div>
+                <button type="submit" *ngIf="emailForm.get('email')?.valid" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
